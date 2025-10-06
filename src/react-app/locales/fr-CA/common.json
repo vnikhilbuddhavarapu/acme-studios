@@ -1,0 +1,17 @@
+{
+    "nav": { "home": "Accueil", "about": "À propos", "services": "Services", "projects": "Projets", "contact": "Contact", "dashboard": "Tableau de bord", "signin": "Connexion", "signup": "Créer un compte", "signout": "Déconnexion" },
+    "home": {
+      "heroPrefix": "Créez des sites",
+      "heroEm": "remarquables",
+      "heroSuffixBeforeEdge": " à la ",
+      "heroEdge": "périphérie",
+      "heroSuffixAfterEdge": ".",
+      "heroSubtitle": "ACME Studios conçoit des sites et des applications rapides, sécurisés et distribués à l’échelle mondiale.",
+      "cta1": "Voir les projets",
+      "cta2": "Obtenir une soumission",
+      "ourServices": "Nos services",
+      "ctaBlockTitle": "Prêt à lancer quelque chose d’exceptionnel?",
+      "ctaBlockBody": "Nous cadrons, prototypons et livrons — rapidement!"
+    }
+  }
+  

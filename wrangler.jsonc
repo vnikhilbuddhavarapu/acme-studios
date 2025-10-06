@@ -1,0 +1,38 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "acme-studios",
+	"main": "./src/worker/index.ts",
+	"compatibility_date": "2025-04-01",
+	"compatibility_flags": [
+		"nodejs_compat"
+	],
+	"d1_databases": [
+    	{
+      		"binding": "DB",
+      		"database_name": "acme_users",
+      		"database_id": "86785dd8-d8dd-48c8-bce1-d4ce02482c5e"
+    	}
+  	],
+	"kv_namespaces": [
+    	{
+      		"binding": "SESSIONS",
+      		"id": "fe3c15b7843144a8ab3b2a7db60fefc1"
+    	}
+  	],
+	"observability": {
+		"enabled": true	
+	},
+	"placement": { "mode": "smart" },
+	"env": {
+    	"production": {
+     		 "vars": {
+        		"TURNSTILE_SITE_KEY": "live_site_key_here"
+      		}
+    	}
+  	},
+	"upload_source_maps": true,
+	"assets": {
+		"directory": "./dist/client",
+		"not_found_handling": "single-page-application"
+	}
+}

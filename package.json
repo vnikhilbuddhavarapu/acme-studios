@@ -13,9 +13,17 @@
 		"publish": true
 	},
 	"dependencies": {
+		"@react-email/components": "^0.5.5",
+		"@tailwindcss/vite": "^4.1.14",
+		"framer-motion": "^12.23.22",
 		"hono": "4.8.2",
+		"i18next": "^25.5.3",
+		"jose": "^6.1.0",
 		"react": "19.0.0",
-		"react-dom": "19.0.0"
+		"react-dom": "^19.0.0",
+		"react-i18next": "^16.0.0",
+		"react-router-dom": "^7.9.3",
+		"tailwindcss": "^4.1.14"
 	},
 	"devDependencies": {
 		"@cloudflare/vite-plugin": "1.7.5",

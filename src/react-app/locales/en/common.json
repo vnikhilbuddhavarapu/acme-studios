@@ -1,0 +1,17 @@
+{
+    "nav": { "home": "Home", "about": "About", "services": "Services", "projects": "Projects", "contact": "Contact", "dashboard": "Dashboard", "signin": "Sign in", "signup": "Sign up", "signout": "Sign out" },
+    "home": {
+      "heroPrefix": "Build",
+      "heroEm": "stunning",
+      "heroSuffixBeforeEdge": "sites on the ",
+      "heroEdge": "edge",
+      "heroSuffixAfterEdge": ".",
+      "heroSubtitle": "ACME Studios crafts websites and apps that are fast, secure, and globally distributed by default.",
+      "cta1": "See Projects",
+      "cta2": "Get a Quote",
+      "ourServices": "Our Services",
+      "ctaBlockTitle": "Ready to launch something great?",
+      "ctaBlockBody": "We’ll scope, prototype, and ship — fast!"
+    }
+  }
+  

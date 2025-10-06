@@ -1,66 +1,63 @@
-// src/App.tsx
+import React from 'react'
+import { Routes, Route, Navigate } from 'react-router-dom'
+import Navbar from './components/Navbar'
+import Footer from './components/Footer'
+import Home from './pages/Home'
+import About from './pages/About'
+import Services from './pages/Services'
+import Projects from './pages/Projects'
+import ProjectDetail from './pages/ProjectDetail'
+import Contact from './pages/Contact'
+import SignIn from './pages/SignIn'
+import SignUp from './pages/SignUp'
+import Dashboard from './pages/Dashboard'
+import GlobalBackground from './components/GlobalBackground'
+import FaviconSwitcher from './components/FaviconSwitcher'
 
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import cloudflareLogo from "./assets/Cloudflare_Logo.svg";
-import honoLogo from "./assets/hono.svg";
-import "./App.css";
-
-function App() {
-  const [count, setCount] = useState(0);
-  const [name, setName] = useState("unknown");
-
+function Shell({ children }: { children: React.ReactNode }) {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-        <a href="https://hono.dev/" target="_blank">
-          <img src={honoLogo} className="logo cloudflare" alt="Hono logo" />
-        </a>
-        <a href="https://workers.cloudflare.com/" target="_blank">
-          <img
-            src={cloudflareLogo}
-            className="logo cloudflare"
-            alt="Cloudflare logo"
-          />
-        </a>
+    <div className="relative min-h-dvh flex flex-col bg-[var(--bg)] text-[var(--fg)]">
+      <GlobalBackground />
+      <FaviconSwitcher />
+      <div className="relative z-10 flex flex-col min-h-dvh">
+        <Navbar />
+        <main className="flex-1">{children}</main>
+        <Footer />
       </div>
-      <h1>Vite + React + Hono + Cloudflare</h1>
-      <div className="card">
-        <button
-          onClick={() => setCount((count) => count + 1)}
-          aria-label="increment"
-        >
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <div className="card">
-        <button
-          onClick={() => {
-            fetch("/api/")
-              .then((res) => res.json() as Promise<{ name: string }>)
-              .then((data) => setName(data.name));
-          }}
-          aria-label="get name"
-        >
-          Name from API is: {name}
-        </button>
-        <p>
-          Edit <code>worker/index.ts</code> to change the name
-        </p>
-      </div>
-      <p className="read-the-docs">Click on the logos to learn more</p>
-    </>
-  );
+    </div>
+  )
 }
 
-export default App;
+function Protected({ children }: { children: React.ReactNode }) {
+  const [ok, setOk] = React.useState<null | boolean>(null)
+  React.useEffect(() => {
+    let on = true
+    fetch('/api/auth/me')
+      .then(r => r.json())
+      .then(d => { if (on) setOk(!!d.user) })
+      .catch(() => { if (on) setOk(false) })
+    return () => { on = false }
+  }, [])
+  if (ok === null) return <div className="px-4 py-16 text-center text-[var(--muted)]">Checking session…</div>
+  if (!ok) return <Navigate to="/signin" replace />
+  return <>{children}</>
+}
+
+export default function App() {
+  return (
+    <Shell>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/projects" element={<Projects />} />
+        <Route path="/projects/:slug" element={<ProjectDetail />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/dashboard" element={<Protected><Dashboard /></Protected>} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </Shell>
+  )
+}
