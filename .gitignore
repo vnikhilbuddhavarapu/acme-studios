@@ -29,3 +29,8 @@ dist-ssr
 !.dev.vars.example
 .env*
 !.env.example
+
+# Documentation files (optional - uncomment to ignore)
+HTTP_HEADERS_GUIDE.md
+CACHING_IMPLEMENTATION_SUMMARY.md
+IMAGE_PLACEMENT_GUIDE.md

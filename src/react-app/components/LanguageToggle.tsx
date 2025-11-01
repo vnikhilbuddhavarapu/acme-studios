@@ -12,7 +12,7 @@ export default function LanguageToggle() {
 
   function change(l: string) {
     i18n.changeLanguage(l)
-    document.cookie = `locale=${l}; Max-Age=31536000; path=/`
+    document.cookie = `lng=${l}; Max-Age=31536000; path=/`
   }
 
   return (

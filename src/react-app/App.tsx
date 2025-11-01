@@ -1,5 +1,6 @@
 import React from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Home from './pages/Home'
@@ -29,6 +30,7 @@ function Shell({ children }: { children: React.ReactNode }) {
 }
 
 function Protected({ children }: { children: React.ReactNode }) {
+  const { t } = useTranslation('common')
   const [ok, setOk] = React.useState<null | boolean>(null)
   React.useEffect(() => {
     let on = true
@@ -38,7 +40,7 @@ function Protected({ children }: { children: React.ReactNode }) {
       .catch(() => { if (on) setOk(false) })
     return () => { on = false }
   }, [])
-  if (ok === null) return <div className="px-4 py-16 text-center text-[var(--muted)]">Checking session…</div>
+  if (ok === null) return <div className="px-4 py-16 text-center text-[var(--muted)]">{t('dashboard.checkingSession')}</div>
   if (!ok) return <Navigate to="/signin" replace />
   return <>{children}</>
 }

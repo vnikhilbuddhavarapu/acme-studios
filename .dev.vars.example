@@ -5,5 +5,5 @@ JWT_SECRET=your-secure-jwt-secret
 
 # Resend
 RESEND_API_KEY=re_XXXXXXXXXXXXXXXXXXXXXXXXXXXX
-RESEND_FROM="<onboarding@resend.dev>"
+RESEND_FROM=onboarding@resend.dev
 RESEND_TO=delivered@resend.dev

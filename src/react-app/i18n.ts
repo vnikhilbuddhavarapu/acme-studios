@@ -1,26 +1,37 @@
-import i18next from 'i18next'
+// src/react-app/i18n.ts
+import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
-import en from './locales/en/common.json'
-import fr from './locales/fr-CA/common.json'
 
-const COOKIE = 'locale'
-function getCookie(name: string) {
-  return document.cookie.split(';').map(s => s.trim()).find(s => s.startsWith(name + '='))?.split('=')[1]
+import en from './locales/en/common.json'
+import frCA from './locales/fr-CA/common.json'
+
+const COOKIE = 'lng'
+
+// tiny cookie reader
+function getCookie(name: string): string | null {
+  if (typeof document === 'undefined') return null
+  const m = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'))
+  return m ? decodeURIComponent(m[2]) : null
 }
 
-const initialLng = getCookie(COOKIE) || navigator.language?.toLowerCase().startsWith('fr') ? 'fr-CA' : 'en'
+// Pick initial language: cookie > navigator > default 'en'
+const nav = (typeof navigator !== 'undefined' ? navigator.language : '').toLowerCase()
+const initialLng = getCookie(COOKIE) || (nav.startsWith('fr') ? 'fr-CA' : 'en')
 
-await i18next
+i18n
   .use(initReactI18next)
   .init({
-    resources: {
-      en: { common: en },
-      'fr-CA': { common: fr }
-    },
     lng: initialLng,
     fallbackLng: 'en',
+    resources: {
+      en: { common: en },
+      'fr-CA': { common: frCA },
+    },
+    ns: ['common'],
+    defaultNS: 'common',
     interpolation: { escapeValue: false },
-    defaultNS: 'common'
+    // If you want React to render without Suspense:
+    react: { useSuspense: false },
   })
 
-export default i18next
+export default i18n

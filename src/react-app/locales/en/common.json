@@ -1,17 +1,171 @@
 {
-    "nav": { "home": "Home", "about": "About", "services": "Services", "projects": "Projects", "contact": "Contact", "dashboard": "Dashboard", "signin": "Sign in", "signup": "Sign up", "signout": "Sign out" },
-    "home": {
-      "heroPrefix": "Build",
-      "heroEm": "stunning",
-      "heroSuffixBeforeEdge": "sites on the ",
-      "heroEdge": "edge",
-      "heroSuffixAfterEdge": ".",
-      "heroSubtitle": "ACME Studios crafts websites and apps that are fast, secure, and globally distributed by default.",
-      "cta1": "See Projects",
-      "cta2": "Get a Quote",
-      "ourServices": "Our Services",
-      "ctaBlockTitle": "Ready to launch something great?",
-      "ctaBlockBody": "We’ll scope, prototype, and ship — fast!"
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "projects": "Projects",
+    "contact": "Contact",
+    "dashboard": "Dashboard",
+    "signin": "Sign in",
+    "signup": "Sign up",
+    "signout": "Sign out"
+  },
+  "home": {
+    "heroPrefix": "Build",
+    "heroEm": "stunning",
+    "heroSuffixBeforeEdge": "sites on the ",
+    "heroEdge": "edge",
+    "heroSuffixAfterEdge": ".",
+    "heroSubtitle": "ACME Studios crafts websites and apps that are fast, secure, and globally distributed by default.",
+    "cta1": "See Projects",
+    "cta2": "Get a Quote",
+    "ourServices": "Our Services",
+    "ctaBlockTitle": "Ready to launch something great?",
+    "ctaBlockBody": "We'll scope, prototype, and ship — fast!"
+  },
+  "about": {
+    "title": "About ACME Studios",
+    "intro": "We're a boutique web agency focused on speed, security, and delightful UX. We build on Cloudflare — Workers for compute, D1 for data, KV for global state — so your app is close to users everywhere.",
+    "missionTitle": "Our Mission",
+    "missionDesc": "Ship world-class digital experiences with edge-native tech.",
+    "missionIntro": "We help organizations move faster by pairing elegant design with edge-native engineering. Our goals:",
+    "missionGoal1": "Deliver measurable performance gains for every launch.",
+    "missionGoal2": "Build systems that are secure by default and simple to operate.",
+    "missionGoal3": "Champion accessibility and inclusive design in all user journeys.",
+    "missionGoal4": "Share knowledge openly to uplift the community.",
+    "teamTitle": "Our Team",
+    "teamDesc": "Designers, engineers, and product folks who love details."
+  },
+  "services": {
+    "title": "Services",
+    "designSprints": {
+      "title": "Design Sprints",
+      "desc": "Rapid prototyping, user testing, and brand systems.",
+      "bullet1": "Stakeholder workshop",
+      "bullet2": "Interactive prototypes",
+      "bullet3": "Design system starter"
+    },
+    "fullStack": {
+      "title": "Full-stack Apps",
+      "desc": "Hono/React on Workers with D1, KV, and Turnstile.",
+      "bullet1": "Auth & sessions",
+      "bullet2": "D1 relational data",
+      "bullet3": "Edge caching strategy"
+    },
+    "ecommerce": {
+      "title": "E-commerce",
+      "desc": "Headless storefronts, secure payments, blazing fast.",
+      "bullet1": "Cart & checkout flows",
+      "bullet2": "Payments integration",
+      "bullet3": "Product image pipeline"
+    },
+    "migrations": {
+      "title": "Migrations",
+      "desc": "Lift-and-shift to Workers with better DX & lower latency.",
+      "bullet1": "Routing/URL parity",
+      "bullet2": "Zero-downtime cutover",
+      "bullet3": "Perf & SEO checks"
+    },
+    "integrations": {
+      "title": "Integrations",
+      "desc": "Resend, Mailgun, Stripe, Notion, and more.",
+      "bullet1": "Webhook handlers",
+      "bullet2": "Background jobs",
+      "bullet3": "Admin dashboards"
+    },
+    "optimization": {
+      "title": "Optimization",
+      "desc": "Core Web Vitals improvements & observability.",
+      "bullet1": "Code-splitting",
+      "bullet2": "Image/CDN tuning",
+      "bullet3": "RUM & tracing"
+    },
+    "webDesign": {
+      "title": "Web Design",
+      "desc": "Modern, responsive UI/UX built with performance in mind.",
+      "bullet1": "Discovery & strategy",
+      "bullet2": "Wireframes & prototypes",
+      "bullet3": "Accessibility baked-in"
+    },
+    "webDevelopment": {
+      "title": "Web Development",
+      "desc": "Full-stack apps on Cloudflare Workers, D1, and KV.",
+      "bullet1": "Auth & sessions",
+      "bullet2": "D1 relational data",
+      "bullet3": "Edge caching strategy"
+    },
+    "apiIntegrations": {
+      "title": "API & Integrations",
+      "desc": "Secure APIs, auth, and third-party integrations.",
+      "bullet1": "Stripe/Resend/Notion",
+      "bullet2": "Webhook handlers",
+      "bullet3": "Admin dashboards"
+    },
+    "optimizationService": {
+      "title": "Optimization",
+      "desc": "Caching, image pipelines, and Lighthouse tuning.",
+      "bullet1": "Code-splitting",
+      "bullet2": "Image/CDN tuning",
+      "bullet3": "RUM & tracing"
     }
+  },
+  "projects": {
+    "title": "Sample Projects",
+    "backToProjects": "Back to projects",
+    "highlights": "Highlights",
+    "techStack": "Tech Stack",
+    "integrations": "Integrations",
+    "results": "Results"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "thankYouTitle": "Thanks for reaching out!",
+    "thankYouMessage": "We'll be in touch shortly. Meanwhile, check out our sample projects.",
+    "viewProjects": "View Projects",
+    "exploreServices": "Explore Services",
+    "autoCloseMessage": "This message will close automatically.",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "email": "Email",
+    "service": "What service are you looking for?",
+    "selectService": "Select a service…",
+    "serviceWebDesign": "Web Design",
+    "serviceWebDev": "Web Development",
+    "serviceAPI": "API & Integrations",
+    "serviceOptimization": "Optimization",
+    "serviceMigrations": "Migrations",
+    "serviceEcommerce": "E-commerce",
+    "message": "Message (optional)",
+    "messagePlaceholder": "Tell us about your project…",
+    "sendButton": "Send message",
+    "sending": "Sending…"
+  },
+  "auth": {
+    "signInTitle": "Sign in",
+    "signUpTitle": "Create your account",
+    "email": "Email",
+    "password": "Password",
+    "firstName": "First name",
+    "signInButton": "Sign in",
+    "signUpButton": "Create account",
+    "newHere": "New here?",
+    "createAccount": "Create an account",
+    "haveAccount": "Have an account?",
+    "completeTurnstile": "Complete Turnstile",
+    "invalidCredentials": "Invalid credentials",
+    "signUpFailed": "Sign up failed"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "greeting": "Hey",
+    "loading": "Loading…",
+    "description": "Here's your space. We'll surface recent activity, saved projects, and settings.",
+    "checkingSession": "Checking session…"
+  },
+  "footer": {
+    "copyright": "ACME Studios. Built with Cloudflare Workers.",
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "status": "Status"
   }
-  
+}

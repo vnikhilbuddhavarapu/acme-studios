@@ -1,17 +1,171 @@
 {
-    "nav": { "home": "Accueil", "about": "À propos", "services": "Services", "projects": "Projets", "contact": "Contact", "dashboard": "Tableau de bord", "signin": "Connexion", "signup": "Créer un compte", "signout": "Déconnexion" },
-    "home": {
-      "heroPrefix": "Créez des sites",
-      "heroEm": "remarquables",
-      "heroSuffixBeforeEdge": " à la ",
-      "heroEdge": "périphérie",
-      "heroSuffixAfterEdge": ".",
-      "heroSubtitle": "ACME Studios conçoit des sites et des applications rapides, sécurisés et distribués à l’échelle mondiale.",
-      "cta1": "Voir les projets",
-      "cta2": "Obtenir une soumission",
-      "ourServices": "Nos services",
-      "ctaBlockTitle": "Prêt à lancer quelque chose d’exceptionnel?",
-      "ctaBlockBody": "Nous cadrons, prototypons et livrons — rapidement!"
+  "nav": {
+    "home": "Accueil",
+    "about": "À propos",
+    "services": "Services",
+    "projects": "Projets",
+    "contact": "Contact",
+    "dashboard": "Tableau de bord",
+    "signin": "Connexion",
+    "signup": "Créer un compte",
+    "signout": "Déconnexion"
+  },
+  "home": {
+    "heroPrefix": "Créez des sites",
+    "heroEm": "remarquables",
+    "heroSuffixBeforeEdge": " à la ",
+    "heroEdge": "périphérie",
+    "heroSuffixAfterEdge": ".",
+    "heroSubtitle": "ACME Studios conçoit des sites et des applications rapides, sécurisés et distribués à l'échelle mondiale.",
+    "cta1": "Voir les projets",
+    "cta2": "Obtenir une soumission",
+    "ourServices": "Nos services",
+    "ctaBlockTitle": "Prêt à lancer quelque chose d'exceptionnel?",
+    "ctaBlockBody": "Nous cadrons, prototypons et livrons — rapidement!"
+  },
+  "about": {
+    "title": "À propos d'ACME Studios",
+    "intro": "Nous sommes une agence web boutique axée sur la vitesse, la sécurité et l'expérience utilisateur agréable. Nous construisons sur Cloudflare — Workers pour le calcul, D1 pour les données, KV pour l'état global — afin que votre application soit proche des utilisateurs partout.",
+    "missionTitle": "Notre mission",
+    "missionDesc": "Livrer des expériences numériques de classe mondiale avec une technologie native de périphérie.",
+    "missionIntro": "Nous aidons les organisations à avancer plus rapidement en associant un design élégant à une ingénierie native de périphérie. Nos objectifs :",
+    "missionGoal1": "Offrir des gains de performance mesurables pour chaque lancement.",
+    "missionGoal2": "Construire des systèmes sécurisés par défaut et simples à exploiter.",
+    "missionGoal3": "Promouvoir l'accessibilité et la conception inclusive dans tous les parcours utilisateurs.",
+    "missionGoal4": "Partager les connaissances ouvertement pour élever la communauté.",
+    "teamTitle": "Notre équipe",
+    "teamDesc": "Des designers, ingénieurs et spécialistes produit qui aiment les détails."
+  },
+  "services": {
+    "title": "Services",
+    "designSprints": {
+      "title": "Sprints de conception",
+      "desc": "Prototypage rapide, tests utilisateurs et systèmes de marque.",
+      "bullet1": "Atelier avec les parties prenantes",
+      "bullet2": "Prototypes interactifs",
+      "bullet3": "Kit de démarrage du système de conception"
+    },
+    "fullStack": {
+      "title": "Applications complètes",
+      "desc": "Hono/React sur Workers avec D1, KV et Turnstile.",
+      "bullet1": "Authentification et sessions",
+      "bullet2": "Données relationnelles D1",
+      "bullet3": "Stratégie de mise en cache périphérique"
+    },
+    "ecommerce": {
+      "title": "Commerce électronique",
+      "desc": "Vitrines sans tête, paiements sécurisés, ultra-rapides.",
+      "bullet1": "Flux de panier et de paiement",
+      "bullet2": "Intégration des paiements",
+      "bullet3": "Pipeline d'images de produits"
+    },
+    "migrations": {
+      "title": "Migrations",
+      "desc": "Migration vers Workers avec une meilleure expérience développeur et une latence réduite.",
+      "bullet1": "Parité de routage/URL",
+      "bullet2": "Basculement sans temps d'arrêt",
+      "bullet3": "Vérifications de performance et SEO"
+    },
+    "integrations": {
+      "title": "Intégrations",
+      "desc": "Resend, Mailgun, Stripe, Notion et plus encore.",
+      "bullet1": "Gestionnaires de webhooks",
+      "bullet2": "Tâches en arrière-plan",
+      "bullet3": "Tableaux de bord administrateur"
+    },
+    "optimization": {
+      "title": "Optimisation",
+      "desc": "Améliorations des Core Web Vitals et observabilité.",
+      "bullet1": "Fractionnement du code",
+      "bullet2": "Réglage d'images/CDN",
+      "bullet3": "RUM et traçage"
+    },
+    "webDesign": {
+      "title": "Conception web",
+      "desc": "UI/UX moderne et réactive conçue pour la performance.",
+      "bullet1": "Découverte et stratégie",
+      "bullet2": "Maquettes et prototypes",
+      "bullet3": "Accessibilité intégrée"
+    },
+    "webDevelopment": {
+      "title": "Développement web",
+      "desc": "Applications complètes sur Cloudflare Workers, D1 et KV.",
+      "bullet1": "Authentification et sessions",
+      "bullet2": "Données relationnelles D1",
+      "bullet3": "Stratégie de mise en cache périphérique"
+    },
+    "apiIntegrations": {
+      "title": "API et intégrations",
+      "desc": "API sécurisées, authentification et intégrations tierces.",
+      "bullet1": "Stripe/Resend/Notion",
+      "bullet2": "Gestionnaires de webhooks",
+      "bullet3": "Tableaux de bord administrateur"
+    },
+    "optimizationService": {
+      "title": "Optimisation",
+      "desc": "Mise en cache, pipelines d'images et réglage Lighthouse.",
+      "bullet1": "Fractionnement du code",
+      "bullet2": "Réglage d'images/CDN",
+      "bullet3": "RUM et traçage"
     }
+  },
+  "projects": {
+    "title": "Projets exemples",
+    "backToProjects": "Retour aux projets",
+    "highlights": "Points saillants",
+    "techStack": "Pile technologique",
+    "integrations": "Intégrations",
+    "results": "Résultats"
+  },
+  "contact": {
+    "title": "Nous contacter",
+    "thankYouTitle": "Merci de nous avoir contactés!",
+    "thankYouMessage": "Nous vous contacterons sous peu. En attendant, consultez nos projets exemples.",
+    "viewProjects": "Voir les projets",
+    "exploreServices": "Explorer les services",
+    "autoCloseMessage": "Ce message se fermera automatiquement.",
+    "firstName": "Prénom",
+    "lastName": "Nom de famille",
+    "email": "Courriel",
+    "service": "Quel service recherchez-vous?",
+    "selectService": "Sélectionnez un service…",
+    "serviceWebDesign": "Conception web",
+    "serviceWebDev": "Développement web",
+    "serviceAPI": "API et intégrations",
+    "serviceOptimization": "Optimisation",
+    "serviceMigrations": "Migrations",
+    "serviceEcommerce": "Commerce électronique",
+    "message": "Message (optionnel)",
+    "messagePlaceholder": "Parlez-nous de votre projet…",
+    "sendButton": "Envoyer le message",
+    "sending": "Envoi en cours…"
+  },
+  "auth": {
+    "signInTitle": "Connexion",
+    "signUpTitle": "Créez votre compte",
+    "email": "Courriel",
+    "password": "Mot de passe",
+    "firstName": "Prénom",
+    "signInButton": "Se connecter",
+    "signUpButton": "Créer un compte",
+    "newHere": "Nouveau ici?",
+    "createAccount": "Créer un compte",
+    "haveAccount": "Vous avez un compte?",
+    "completeTurnstile": "Complétez Turnstile",
+    "invalidCredentials": "Identifiants invalides",
+    "signUpFailed": "Échec de l'inscription"
+  },
+  "dashboard": {
+    "title": "Tableau de bord",
+    "greeting": "Salut",
+    "loading": "Chargement…",
+    "description": "Voici votre espace. Nous afficherons l'activité récente, les projets sauvegardés et les paramètres.",
+    "checkingSession": "Vérification de la session…"
+  },
+  "footer": {
+    "copyright": "ACME Studios. Construit avec Cloudflare Workers.",
+    "privacy": "Confidentialité",
+    "terms": "Conditions",
+    "status": "Statut"
   }
-  
+}

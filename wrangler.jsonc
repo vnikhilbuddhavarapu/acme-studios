@@ -6,30 +6,26 @@
 	"compatibility_flags": [
 		"nodejs_compat"
 	],
+	"account_id": "904dd3d810f6f1dd3801d8b940bd747a",
 	"d1_databases": [
-    	{
-      		"binding": "DB",
-      		"database_name": "acme_users",
-      		"database_id": "86785dd8-d8dd-48c8-bce1-d4ce02482c5e"
-    	}
-  	],
+		{
+			"binding": "DB",
+			"database_name": "acme_users",
+			"database_id": "87e33b53-ab7d-4f03-9542-e8426c30700e",
+		}
+	],
 	"kv_namespaces": [
-    	{
-      		"binding": "SESSIONS",
-      		"id": "fe3c15b7843144a8ab3b2a7db60fefc1"
-    	}
-  	],
+		{
+			"binding": "SESSIONS",
+			"id": "1085872b3c344a6cb73b214b2f800b29",
+		}
+	],
 	"observability": {
-		"enabled": true	
+		"enabled": true
 	},
-	"placement": { "mode": "smart" },
-	"env": {
-    	"production": {
-     		 "vars": {
-        		"TURNSTILE_SITE_KEY": "live_site_key_here"
-      		}
-    	}
-  	},
+	"placement": {
+		"mode": "smart"
+	},
 	"upload_source_maps": true,
 	"assets": {
 		"directory": "./dist/client",

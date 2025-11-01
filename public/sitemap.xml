@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <!-- Home Page -->
+  <url>
+    <loc>https://acme-studios.org/</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://acme-studios.org/?lng=en" />
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://acme-studios.org/?lng=fr-CA" />
+  </url>
+
+  <!-- About Page -->
+  <url>
+    <loc>https://acme-studios.org/about</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://acme-studios.org/about?lng=en" />
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://acme-studios.org/about?lng=fr-CA" />
+  </url>
+
+  <!-- Services Page -->
+  <url>
+    <loc>https://acme-studios.org/services</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://acme-studios.org/services?lng=en" />
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://acme-studios.org/services?lng=fr-CA" />
+  </url>
+
+  <!-- Projects Page -->
+  <url>
+    <loc>https://acme-studios.org/projects</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://acme-studios.org/projects?lng=en" />
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://acme-studios.org/projects?lng=fr-CA" />
+  </url>
+
+  <!-- Individual Project Pages -->
+  <url>
+    <loc>https://acme-studios.org/projects/flux-dashboard</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://acme-studios.org/projects/flux-dashboard?lng=en" />
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://acme-studios.org/projects/flux-dashboard?lng=fr-CA" />
+  </url>
+
+  <url>
+    <loc>https://acme-studios.org/projects/shopify-headless</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://acme-studios.org/projects/shopify-headless?lng=en" />
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://acme-studios.org/projects/shopify-headless?lng=fr-CA" />
+  </url>
+
+  <url>
+    <loc>https://acme-studios.org/projects/notion-cms</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://acme-studios.org/projects/notion-cms?lng=en" />
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://acme-studios.org/projects/notion-cms?lng=fr-CA" />
+  </url>
+
+  <url>
+    <loc>https://acme-studios.org/projects/realtime-collab</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://acme-studios.org/projects/realtime-collab?lng=en" />
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://acme-studios.org/projects/realtime-collab?lng=fr-CA" />
+  </url>
+
+  <url>
+    <loc>https://acme-studios.org/projects/edge-analytics</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://acme-studios.org/projects/edge-analytics?lng=en" />
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://acme-studios.org/projects/edge-analytics?lng=fr-CA" />
+  </url>
+
+  <url>
+    <loc>https://acme-studios.org/projects/saas-starter</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://acme-studios.org/projects/saas-starter?lng=en" />
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://acme-studios.org/projects/saas-starter?lng=fr-CA" />
+  </url>
+
+  <!-- Contact Page -->
+  <url>
+    <loc>https://acme-studios.org/contact</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://acme-studios.org/contact?lng=en" />
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://acme-studios.org/contact?lng=fr-CA" />
+  </url>
+
+  <!-- Auth Pages (lower priority, noindex in practice) -->
+  <url>
+    <loc>https://acme-studios.org/signin</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://acme-studios.org/signup</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+</urlset>

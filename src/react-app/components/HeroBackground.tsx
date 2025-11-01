@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 import { motion } from 'framer-motion'
 
 type Dot = { cx: number; cy: number; r: number; duration: number; delay: number }

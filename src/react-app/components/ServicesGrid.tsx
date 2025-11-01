@@ -1,33 +1,36 @@
+import { useTranslation } from 'react-i18next'
 import CardImage from './CardImage'
 
-const FEATURES = [
+export default function ServicesGrid() {
+  const { t } = useTranslation('common')
+  
+  const FEATURES = [
   {
-    title: 'Web Design',
-    desc: 'Modern, responsive UI/UX built with performance in mind.',
-    bullets: ['Discovery & strategy', 'Wireframes & prototypes', 'Accessibility baked-in'],
+    title: t('services.webDesign.title'),
+    desc: t('services.webDesign.desc'),
+    bullets: [t('services.webDesign.bullet1'), t('services.webDesign.bullet2'), t('services.webDesign.bullet3')],
     image: '/images/services/web-design.avif'
   },
   {
-    title: 'Web Development',
-    desc: 'Full-stack apps on Cloudflare Workers, D1, and KV.',
-    bullets: ['Auth & sessions', 'D1 relational data', 'Edge caching strategy'],
+    title: t('services.webDevelopment.title'),
+    desc: t('services.webDevelopment.desc'),
+    bullets: [t('services.webDevelopment.bullet1'), t('services.webDevelopment.bullet2'), t('services.webDevelopment.bullet3')],
     image: '/images/services/fullstack.avif'
   },
   {
-    title: 'API & Integrations',
-    desc: 'Secure APIs, auth, and third-party integrations.',
-    bullets: ['Stripe/Resend/Notion', 'Webhook handlers', 'Admin dashboards'],
+    title: t('services.apiIntegrations.title'),
+    desc: t('services.apiIntegrations.desc'),
+    bullets: [t('services.apiIntegrations.bullet1'), t('services.apiIntegrations.bullet2'), t('services.apiIntegrations.bullet3')],
     image: '/images/services/integrations.avif'
   },
   {
-    title: 'Optimization',
-    desc: 'Caching, image pipelines, and Lighthouse tuning.',
-    bullets: ['Code-splitting', 'Image/CDN tuning', 'RUM & tracing'],
+    title: t('services.optimizationService.title'),
+    desc: t('services.optimizationService.desc'),
+    bullets: [t('services.optimizationService.bullet1'), t('services.optimizationService.bullet2'), t('services.optimizationService.bullet3')],
     image: '/images/services/optimization.avif'
   }
 ]
 
-export default function ServicesGrid() {
   return (
     <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
       {FEATURES.map((f) => (
