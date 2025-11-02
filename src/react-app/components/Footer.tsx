@@ -59,19 +59,19 @@ export default function Footer() {
   return (
     <>
       <footer className="border-t border-neutral-800">
-        <div className="mx-auto max-w-6xl px-4 py-10 text-sm text-neutral-400">
+        <div className="mx-auto max-w-6xl px-4 py-10 text-base text-neutral-400">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p>© {new Date().getFullYear()} {t('footer.copyright')}</p>
-            <div className="flex items-center gap-4">
-              <button className="hover:text-neutral-200" onClick={() => setOpen('privacy')}>
+            <p className="font-medium">© {new Date().getFullYear()} {t('footer.copyright')}</p>
+            <div className="flex items-center gap-6">
+              <button className="font-medium hover:text-neutral-200 transition" onClick={() => setOpen('privacy')}>
                 {t('footer.privacy')}
               </button>
-              <button className="hover:text-neutral-200" onClick={() => setOpen('terms')}>
+              <button className="font-medium hover:text-neutral-200 transition" onClick={() => setOpen('terms')}>
                 {t('footer.terms')}
               </button>
               <a 
-                className="hover:text-neutral-200" 
-                href="https://github.com/yourusername/acme-studios" 
+                className="font-medium hover:text-neutral-200 transition" 
+                href="https://github.com/vnikhilbuddhavarapu/acme-studios" 
                 target="_blank" 
                 rel="noopener noreferrer"
               >

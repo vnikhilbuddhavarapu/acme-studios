@@ -29,6 +29,8 @@ dist-ssr
 !.dev.vars.example
 .env*
 !.env.example
+wrangler.jsonc
+
 
 # Documentation files (optional - uncomment to ignore)
 HTTP_HEADERS_GUIDE.md

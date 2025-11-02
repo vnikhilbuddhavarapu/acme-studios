@@ -5,7 +5,7 @@ import CardImage from '../components/CardImage'
 export default function Home() {
   const { t } = useTranslation('common')
   return (
-    <>
+    <div>
       <section className="relative overflow-hidden">
         <div className="mx-auto max-w-6xl px-4 py-24 text-center">
           <h1 className="text-5xl sm:text-6xl font-extrabold tracking-tight">
@@ -164,6 +164,6 @@ export default function Home() {
           </Link>
         </div>
       </section>
-    </>
+    </div>
   )
 }

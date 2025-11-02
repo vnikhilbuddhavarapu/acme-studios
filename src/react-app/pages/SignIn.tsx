@@ -38,9 +38,19 @@ export default function SignIn() {
         // Check for specific error messages from the server
         const data = await r.json().catch(() => ({}))
         
-        // Check for Cloudflare WAF leaked credentials
-        if (r.status === 403 && data.error?.includes('leaked')) {
-          setError('Your credentials have been leaked. Please change your password.')
+        // Check for Cloudflare WAF leaked credentials (403 status)
+        if (r.status === 403) {
+          // Check if error or message contains "leaked" or "Leaked Credentials"
+          const errorText = (data.error || '').toLowerCase()
+          const messageText = (data.message || '').toLowerCase()
+          
+          if (errorText.includes('leaked') || messageText.includes('leaked')) {
+            setError('Your username and/or password have been leaked in a data breach. Please reset your password immediately.')
+            return
+          }
+          
+          // Generic 403 error if not leaked credentials
+          setError('Access forbidden. Please try again.')
           return
         }
         
