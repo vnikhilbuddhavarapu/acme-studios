@@ -4,25 +4,51 @@ import { motion } from 'framer-motion'
 type Dot = { cx: number; cy: number; r: number; duration: number; delay: number }
 
 export default function GlobalBackground() {
-  const [pageHeight, setPageHeight] = useState(0)
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
 
   useEffect(() => {
-    const updateHeight = () => {
-      setPageHeight(document.documentElement.scrollHeight)
+    const updateDimensions = () => {
+      // Use the maximum of scrollHeight and clientHeight to ensure we cover everything
+      const height = Math.max(
+        document.documentElement.scrollHeight,
+        document.documentElement.clientHeight,
+        document.body.scrollHeight,
+        document.body.clientHeight
+      )
+      const width = window.innerWidth
+      setDimensions({ width, height })
     }
-    updateHeight()
-    // Update when content changes (images load, etc.)
-    const observer = new ResizeObserver(updateHeight)
+    
+    updateDimensions()
+    
+    // Update on window resize
+    window.addEventListener('resize', updateDimensions)
+    
+    // Update when content changes (textareas expand, images load, etc.)
+    const observer = new ResizeObserver(() => {
+      // Use setTimeout to ensure DOM has updated
+      setTimeout(updateDimensions, 0)
+    })
     observer.observe(document.body)
-    return () => observer.disconnect()
+    
+    // Also observe the main element for content changes
+    const mainElement = document.querySelector('main')
+    if (mainElement) {
+      observer.observe(mainElement)
+    }
+    
+    return () => {
+      window.removeEventListener('resize', updateDimensions)
+      observer.disconnect()
+    }
   }, [])
 
   const dots = useMemo<Dot[]>(() => {
-    if (pageHeight === 0) return []
+    if (dimensions.height === 0) return []
     
     const dotSpacing = 100 // One dot per 100px grid square
-    const cols = Math.ceil(window.innerWidth / dotSpacing) + 2 // Extra for edges
-    const rows = Math.ceil(pageHeight / dotSpacing) + 2 // Cover full page height
+    const cols = Math.ceil(dimensions.width / dotSpacing) + 2 // Extra for edges
+    const rows = Math.ceil(dimensions.height / dotSpacing) + 2 // Cover full page height
     const arr: Dot[] = []
     
     for (let y = 0; y < rows; y++) {
@@ -37,21 +63,17 @@ export default function GlobalBackground() {
       }
     }
     return arr
-  }, [pageHeight])
-
-  // Calculate mask fade points based on actual page height
-  const fadeTopPx = pageHeight * 0.08 // 8% from top
-  const fadeBottomPx = pageHeight * 0.92 // 92% from top
+  }, [dimensions.width, dimensions.height])
 
   return (
     <div
       className="absolute inset-0 z-0 pointer-events-none text-[var(--fg)]"
       style={{
-        // feather edges so it blends with page bg as you scroll
+        // Simple fade at top and bottom edges
         WebkitMaskImage:
-          `linear-gradient(to bottom, transparent 0px, black ${fadeTopPx}px, black ${fadeBottomPx}px, transparent ${pageHeight}px)`,
+          'linear-gradient(to bottom, transparent 0%, black 5%, black 95%, transparent 100%)',
         maskImage:
-          `linear-gradient(to bottom, transparent 0px, black ${fadeTopPx}px, black ${fadeBottomPx}px, transparent ${pageHeight}px)`
+          'linear-gradient(to bottom, transparent 0%, black 5%, black 95%, transparent 100%)'
       }}
     >
       {/* gentle moving glow (on top of base bg) */}

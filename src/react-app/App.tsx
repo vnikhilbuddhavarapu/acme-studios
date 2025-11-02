@@ -19,11 +19,15 @@ import FaviconSwitcher from './components/FaviconSwitcher'
 function Shell({ children }: { children: React.ReactNode }) {
   return (
     <div className="relative min-h-dvh flex flex-col text-[var(--fg)]" style={{ background: 'var(--bg)' }}>
-      <GlobalBackground />
       <FaviconSwitcher />
-      <div className="relative z-10 flex flex-col min-h-dvh" style={{ background: 'transparent' }}>
+      <div className="relative flex flex-col min-h-dvh">
         <Navbar />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1 relative">
+          <GlobalBackground />
+          <div className="relative z-10">
+            {children}
+          </div>
+        </main>
         <Footer />
         <CookieBanner />
       </div>
