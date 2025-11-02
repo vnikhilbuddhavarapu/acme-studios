@@ -1,7 +1,7 @@
 import { Hono } from 'hono'
 import type { Env } from '../types'
 import { verifyTurnstile } from '../lib/turnstile'
-import ContactEmail from '../email/ContactEmail'
+import ThankYouEmail from '../email/ThankYouEmail'
 import { renderToStaticMarkup } from 'react-dom/server'
 
 export const contact = new Hono<{ Bindings: Env }>()
@@ -39,10 +39,10 @@ contact.post('/', async (c) => {
   if (!firstName || !lastName || !email || !service) return c.json({ error: 'missing_fields' }, 400)
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return c.json({ error: 'bad_email' }, 400)
 
-  // 3) Compose email via React Email
+  // 3) Compose thank you email via React Email
   const submittedAt = new Date().toISOString()
   const html = '<!doctype html>' + renderToStaticMarkup(
-    ContactEmail({
+    ThankYouEmail({
       firstName: sanitize(firstName),
       lastName: sanitize(lastName),
       email: sanitize(email),
@@ -53,19 +53,30 @@ contact.post('/', async (c) => {
     })
   )
   const text =
+    `Hey ${firstName},\n\n` +
+    `Thanks for reaching out to ACME Studios! We received your inquiry and we'll get back to you within 24-48 hours.\n\n` +
+    `Your Submission:\n` +
     `Name: ${firstName} ${lastName}\n` +
     `Email: ${email}\n` +
     `Service: ${service}\n` +
-    (message ? `Message:\n${message}\n` : '') +
-    `— ACME Studios\nReceived: ${submittedAt}`
+    (message ? `Message: ${message}\n` : '') +
+    `\nSubmitted: ${new Date(submittedAt).toLocaleString()}\n\n` +
+    `Questions? Just reply to this email.\n\n` +
+    `— ACME Studios`
 
-  // 4) Resend
-  const FROM = c.env.RESEND_FROM || 'ACME Studios <onboarding@resend.dev>'
-  const TO = c.env.RESEND_TO || 'delivered@resend.dev' // test inbox
+  // 4) Send email to user via Resend
+  const FROM = c.env.RESEND_FROM || 'ACME Studios <no-reply@acme-studios.org>'
   const apiKey = c.env.RESEND_API_KEY
   if (!apiKey) return c.json({ error: 'missing_resend_api_key' }, 500)
 
-  const payload = { from: FROM, to: [TO], subject: `New inquiry: ${firstName} ${lastName} — ${service}`, html, text }
+  const payload = { 
+    from: FROM, 
+    to: [email], // Send to the user who submitted the form
+    subject: `Thanks for reaching out to ACME Studios!`, 
+    html, 
+    text,
+    reply_to: 'hello@acme-studios.org' // Allow user to reply
+  }
   const r = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: { 'content-type': 'application/json', authorization: `Bearer ${apiKey}` },

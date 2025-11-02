@@ -59,20 +59,24 @@ export default function Contact() {
       <h1 className="text-3xl font-bold mb-6">{t('contact.title')}</h1>
 
       {ok && (
-        <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface-1)] p-6 mb-6 text-center">
-          <h2 className="text-xl font-semibold">{t('contact.thankYouTitle')}</h2>
-          <p className="text-[var(--muted)] mt-2">
+        <div className="rounded-2xl border border-green-500/20 bg-green-500/10 p-8 mb-6 text-center">
+          <div className="text-5xl mb-4">✓</div>
+          <h2 className="text-2xl font-semibold">{t('contact.thankYouTitle')}</h2>
+          <p className="text-[var(--muted)] mt-3 text-lg">
             {t('contact.thankYouMessage')}
           </p>
-          <div className="mt-4 flex justify-center gap-3">
-            <button className="px-4 py-2 rounded-lg bg-[var(--fg)] text-[var(--bg)] font-medium" onClick={() => nav('/projects')}>
+          <p className="text-sm text-[var(--muted)] mt-4">
+            We've sent a confirmation email to <strong className="text-[var(--fg)]">{data.email}</strong>
+          </p>
+          <div className="mt-6 flex justify-center gap-3">
+            <button className="px-4 py-2 rounded-lg bg-[var(--fg)] text-[var(--bg)] font-medium hover:opacity-90 transition" onClick={() => nav('/projects')}>
               {t('contact.viewProjects')}
             </button>
-            <button className="px-4 py-2 rounded-lg border border-[var(--border)] hover:bg-[var(--surface-2)]" onClick={() => nav('/services')}>
+            <button className="px-4 py-2 rounded-lg border border-[var(--border)] hover:bg-[var(--surface-2)] transition" onClick={() => nav('/services')}>
               {t('contact.exploreServices')}
             </button>
           </div>
-          <p className="text-xs text-[var(--muted)] mt-3">{t('contact.autoCloseMessage')}</p>
+          <p className="text-xs text-[var(--muted)] mt-4">{t('contact.autoCloseMessage')}</p>
         </div>
       )}
 
@@ -98,12 +102,12 @@ export default function Contact() {
             <label className="block text-sm mb-1">{t('contact.service')}</label>
             <select className="input" value={data.service} onChange={e => setData({ ...data, service: e.target.value })} required>
               <option value="" disabled>{t('contact.selectService')}</option>
-              <option>{t('contact.serviceWebDesign')}</option>
-              <option>{t('contact.serviceWebDev')}</option>
-              <option>{t('contact.serviceAPI')}</option>
-              <option>{t('contact.serviceOptimization')}</option>
-              <option>{t('contact.serviceMigrations')}</option>
-              <option>{t('contact.serviceEcommerce')}</option>
+              <option>{t('services.agileMethodology.title')}</option>
+              <option>{t('services.cloudArchitecture.title')}</option>
+              <option>{t('services.platformEngineering.title')}</option>
+              <option>{t('services.devSecOps.title')}</option>
+              <option>{t('services.observability.title')}</option>
+              <option>{t('services.appModernization.title')}</option>
             </select>
           </div>
 
@@ -117,10 +121,24 @@ export default function Contact() {
             <Turnstile onToken={setToken} />
           </div>
 
-          {err && <div className="text-sm text-red-400">{err}</div>}
+          {err && (
+            <div className="text-sm text-red-500 font-medium bg-red-500/10 border border-red-500/20 rounded-lg p-3">
+              {err}
+            </div>
+          )}
 
           <div className="pt-2">
-            <button type="submit" className="px-5 py-3 rounded-lg bg-[var(--fg)] text-[var(--bg)] font-medium disabled:opacity-60" disabled={submitting}>
+            <button 
+              type="submit" 
+              className="px-5 py-3 rounded-lg bg-[var(--fg)] text-[var(--bg)] font-medium disabled:opacity-60 transition flex items-center gap-2" 
+              disabled={submitting || !token}
+            >
+              {submitting && (
+                <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+              )}
               {submitting ? t('contact.sending') : t('contact.sendButton')}
             </button>
           </div>

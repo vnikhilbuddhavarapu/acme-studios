@@ -6,40 +6,40 @@ export default function Services() {
   
   const items = [
     {
-      title: t('services.designSprints.title'),
-      desc: t('services.designSprints.desc'),
-      bullets: [t('services.designSprints.bullet1'), t('services.designSprints.bullet2'), t('services.designSprints.bullet3')],
-      image: '/images/services/design-sprints.jpg',
+      title: t('services.agileMethodology.title'),
+      desc: t('services.agileMethodology.desc'),
+      bullets: [t('services.agileMethodology.bullet1'), t('services.agileMethodology.bullet2'), t('services.agileMethodology.bullet3')],
+      image: '/images/services/agile-methodology.jpg',
     },
     {
-      title: t('services.fullStack.title'),
-      desc: t('services.fullStack.desc'),
-      bullets: [t('services.fullStack.bullet1'), t('services.fullStack.bullet2'), t('services.fullStack.bullet3')],
-      image: '/images/services/full-stack.jpg',
+      title: t('services.cloudArchitecture.title'),
+      desc: t('services.cloudArchitecture.desc'),
+      bullets: [t('services.cloudArchitecture.bullet1'), t('services.cloudArchitecture.bullet2'), t('services.cloudArchitecture.bullet3')],
+      image: '/images/services/cloud-architecture.jpg',
     },
     {
-      title: t('services.ecommerce.title'),
-      desc: t('services.ecommerce.desc'),
-      bullets: [t('services.ecommerce.bullet1'), t('services.ecommerce.bullet2'), t('services.ecommerce.bullet3')],
-      image: '/images/services/ecommerce.jpg',
+      title: t('services.platformEngineering.title'),
+      desc: t('services.platformEngineering.desc'),
+      bullets: [t('services.platformEngineering.bullet1'), t('services.platformEngineering.bullet2'), t('services.platformEngineering.bullet3')],
+      image: '/images/services/platform-engineering.jpg',
     },
     {
-      title: t('services.migrations.title'),
-      desc: t('services.migrations.desc'),
-      bullets: [t('services.migrations.bullet1'), t('services.migrations.bullet2'), t('services.migrations.bullet3')],
-      image: '/images/services/migrations.jpg',
+      title: t('services.devSecOps.title'),
+      desc: t('services.devSecOps.desc'),
+      bullets: [t('services.devSecOps.bullet1'), t('services.devSecOps.bullet2'), t('services.devSecOps.bullet3')],
+      image: '/images/services/devsecops.jpg',
     },
     {
-      title: t('services.integrations.title'),
-      desc: t('services.integrations.desc'),
-      bullets: [t('services.integrations.bullet1'), t('services.integrations.bullet2'), t('services.integrations.bullet3')],
-      image: '/images/services/integrations.jpg',
+      title: t('services.observability.title'),
+      desc: t('services.observability.desc'),
+      bullets: [t('services.observability.bullet1'), t('services.observability.bullet2'), t('services.observability.bullet3')],
+      image: '/images/services/observability.jpg',
     },
     {
-      title: t('services.optimization.title'),
-      desc: t('services.optimization.desc'),
-      bullets: [t('services.optimization.bullet1'), t('services.optimization.bullet2'), t('services.optimization.bullet3')],
-      image: '/images/services/optimization.jpg',
+      title: t('services.appModernization.title'),
+      desc: t('services.appModernization.desc'),
+      bullets: [t('services.appModernization.bullet1'), t('services.appModernization.bullet2'), t('services.appModernization.bullet3')],
+      image: '/images/services/application-modernization.jpg',
     },
   ]
   
@@ -49,7 +49,7 @@ export default function Services() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {items.map((x) => (
             <div key={x.title} className="card p-6 hover:translate-y-[-2px] transition">
-              <CardImage src={x.image} alt={x.title} className="h-32" />
+              <CardImage src={x.image} alt={x.title} className="h-48" />
               <h3 className="font-semibold mt-4">{x.title}</h3>
               <p className="text-sm text-[var(--muted)] mt-1">{x.desc}</p>
               <ul className="list-disc ms-5 mt-3 text-sm text-[var(--muted)] space-y-1">

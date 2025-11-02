@@ -1,24 +1,47 @@
-import { useMemo } from 'react'
+import { useMemo, useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 
 type Dot = { cx: number; cy: number; r: number; duration: number; delay: number }
 
 export default function GlobalBackground() {
+  const [pageHeight, setPageHeight] = useState(0)
+
+  useEffect(() => {
+    const updateHeight = () => {
+      setPageHeight(document.documentElement.scrollHeight)
+    }
+    updateHeight()
+    // Update when content changes (images load, etc.)
+    const observer = new ResizeObserver(updateHeight)
+    observer.observe(document.body)
+    return () => observer.disconnect()
+  }, [])
+
   const dots = useMemo<Dot[]>(() => {
-    const cols = 14, rows = 7, arr: Dot[] = []
+    if (pageHeight === 0) return []
+    
+    const dotSpacing = 100 // One dot per 100px grid square
+    const cols = Math.ceil(window.innerWidth / dotSpacing) + 2 // Extra for edges
+    const rows = Math.ceil(pageHeight / dotSpacing) + 2 // Cover full page height
+    const arr: Dot[] = []
+    
     for (let y = 0; y < rows; y++) {
       for (let x = 0; x < cols; x++) {
         const i = y * cols + x
-        const fx = (x + 0.5) / cols
-        const fy = (y + 0.5) / rows
+        const cx = x * dotSpacing + dotSpacing / 2 // Center of grid square
+        const cy = y * dotSpacing + dotSpacing / 2 // Center of grid square
         const r = 2.5 + ((i * 31) % 3) // tiny dots for subtlety
         const duration = 3 + ((i * 17) % 30) / 10 // 3..6s
         const delay = ((i * 13) % 20) / 10 // 0..2s
-        arr.push({ cx: fx * 1600, cy: fy * 900, r, duration, delay })
+        arr.push({ cx, cy, r, duration, delay })
       }
     }
     return arr
-  }, [])
+  }, [pageHeight])
+
+  // Calculate mask fade points based on actual page height
+  const fadeTopPx = pageHeight * 0.08 // 8% from top
+  const fadeBottomPx = pageHeight * 0.92 // 92% from top
 
   return (
     <div
@@ -26,9 +49,9 @@ export default function GlobalBackground() {
       style={{
         // feather edges so it blends with page bg as you scroll
         WebkitMaskImage:
-          'linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%)',
+          `linear-gradient(to bottom, transparent 0px, black ${fadeTopPx}px, black ${fadeBottomPx}px, transparent ${pageHeight}px)`,
         maskImage:
-          'linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%)'
+          `linear-gradient(to bottom, transparent 0px, black ${fadeTopPx}px, black ${fadeBottomPx}px, transparent ${pageHeight}px)`
       }}
     >
       {/* gentle moving glow (on top of base bg) */}
@@ -44,28 +67,39 @@ export default function GlobalBackground() {
         }}
       />
 
-      {/* subtle grid + floating dots */}
-      <motion.svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" className="absolute inset-0 h-full w-full">
-        <defs>
-          <pattern id="bggrid" width="100" height="100" patternUnits="userSpaceOnUse">
-            <path d="M 100 0 L 0 0 0 100" fill="none" stroke="currentColor" strokeOpacity="0.07" strokeWidth="1" />
-          </pattern>
-        </defs>
-        <rect width="1600" height="900" fill="url(#bggrid)" style={{ color: 'currentColor' }} />
+      {/* subtle grid pattern - fixed size, no scaling */}
+      <div 
+        className="absolute inset-0 w-full h-full"
+        style={{
+          backgroundImage: `
+            linear-gradient(to right, color-mix(in oklab, var(--fg), transparent 93%) 1px, transparent 1px),
+            linear-gradient(to bottom, color-mix(in oklab, var(--fg), transparent 93%) 1px, transparent 1px)
+          `,
+          backgroundSize: '100px 100px',
+          backgroundPosition: 'center center'
+        }}
+      />
+      
+      {/* floating dots - positioned at fixed pixels matching grid */}
+      <div className="absolute inset-0 w-full h-full overflow-hidden">
         {dots.map((d, i) => (
-          <motion.circle
+          <motion.div
             key={i}
-            cx={d.cx}
-            cy={d.cy}
-            r={d.r}
-            fill="currentColor"
-            style={{ color: 'color-mix(in oklab, var(--fg), transparent 28%)' }}
+            className="absolute rounded-full"
+            style={{
+              left: `${d.cx}px`,
+              top: `${d.cy}px`,
+              width: `${d.r * 2}px`,
+              height: `${d.r * 2}px`,
+              background: 'color-mix(in oklab, var(--fg), transparent 72%)',
+              transform: 'translate(-50%, -50%)', // Center the dot on the position
+            }}
             initial={{ opacity: 0.5, y: 0 }}
             animate={{ opacity: [0.5, 0.9, 0.5], y: [0, -6, 0] }}
             transition={{ duration: d.duration, delay: d.delay, repeat: Infinity, ease: 'easeInOut' }}
           />
         ))}
-      </motion.svg>
+      </div>
 
       {/* soft vignette for center focus */}
       <div

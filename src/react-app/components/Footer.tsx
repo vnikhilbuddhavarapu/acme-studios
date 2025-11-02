@@ -49,6 +49,13 @@ export default function Footer() {
   const { t } = useTranslation('common')
   const [open, setOpen] = React.useState<'privacy' | 'terms' | null>(null)
 
+  // Listen for custom event from CookieBanner to open Privacy modal
+  React.useEffect(() => {
+    const handleOpenPrivacy = () => setOpen('privacy')
+    window.addEventListener('openPrivacy', handleOpenPrivacy)
+    return () => window.removeEventListener('openPrivacy', handleOpenPrivacy)
+  }, [])
+
   return (
     <>
       <footer className="border-t border-neutral-800">

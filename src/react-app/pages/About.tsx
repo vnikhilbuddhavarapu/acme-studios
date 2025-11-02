@@ -27,7 +27,7 @@ function Modal({ open, onClose, title, children }: ModalProps) {
       aria-label={title}
     >
       <div
-        className="max-w-2xl w-full rounded-2xl border border-[var(--border)] bg-[var(--surface-1)] shadow-xl p-6"
+        className="max-w-4xl w-full max-h-[85vh] overflow-y-auto rounded-2xl border border-[var(--border)] bg-[var(--surface-1)] shadow-xl p-6"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-start justify-between">
@@ -48,7 +48,7 @@ function Modal({ open, onClose, title, children }: ModalProps) {
 
 export default function About() {
   const { t } = useTranslation('common')
-  const [open, setOpen] = React.useState<'mission' | 'team' | null>(null)
+  const [open, setOpen] = React.useState<'mission' | 'team' | 'methodology' | null>(null)
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-16">
@@ -62,7 +62,7 @@ export default function About() {
           onClick={() => setOpen('mission')}
           className="card p-6 text-left hover:translate-y-[-2px] transition"
         >
-          <CardImage src="/images/about/mission.jpg" alt={t('about.missionTitle')} className="h-40" />
+          <CardImage src="/about/mission.jpg" alt={t('about.missionTitle')} className="h-40" />
           <h3 className="font-semibold mt-4">{t('about.missionTitle')}</h3>
           <p className="text-[var(--muted)] text-sm mt-1">
             {t('about.missionDesc')}
@@ -73,10 +73,22 @@ export default function About() {
           onClick={() => setOpen('team')}
           className="card p-6 text-left hover:translate-y-[-2px] transition"
         >
-          <CardImage src="/images/about/team.jpg" alt={t('about.teamTitle')} className="h-40" />
+          <CardImage src="/about/team.jpg" alt={t('about.teamTitle')} className="h-40" />
           <h3 className="font-semibold mt-4">{t('about.teamTitle')}</h3>
           <p className="text-[var(--muted)] text-sm mt-1">
             {t('about.teamDesc')}
+          </p>
+        </button>
+      </div>
+
+      <div className="mt-6">
+        <button
+          onClick={() => setOpen('methodology')}
+          className="card p-6 text-left hover:translate-y-[-2px] transition w-full"
+        >
+          <h3 className="font-semibold text-lg">{t('about.methodologyTitle')}</h3>
+          <p className="text-[var(--muted)] text-sm mt-2">
+            {t('about.methodologyDesc')}
           </p>
         </button>
       </div>
@@ -98,13 +110,13 @@ export default function About() {
       <Modal open={open === 'team'} onClose={() => setOpen(null)} title={t('about.teamTitle')}>
         <div className="grid sm:grid-cols-2 gap-4">
           {[
-            { name: 'Ava Patel', role: 'Head of Engineering', tags: ['DevOps', 'Workers', 'D1'], image: '/images/about/team/ava-patel.jpg' },
-            { name: 'Liam Chen', role: 'Lead Designer', tags: ['Design Systems', 'A11y', 'Motion'], image: '/images/about/team/liam-chen.jpg' },
-            { name: 'Sofia Martins', role: 'Full-stack Engineer', tags: ['Hono', 'React', 'Edge Caching'], image: '/images/about/team/sofia-martins.jpg' },
-            { name: 'Noah Singh', role: 'Platform Engineer', tags: ['CI/CD', 'Observability', 'Perf'], image: '/images/about/team/noah-singh.jpg' },
+            { name: 'Ava Miller', role: 'Head of Engineering', tags: ['System Architecture', 'Cloud Infrastructure', 'Team Leadership', 'DevOps', 'API Design'], image: '/about/team/ava-miller.jpg' },
+            { name: 'Liam Chen', role: 'Lead UI/UX Designer', tags: ['User Research', 'Design Systems', 'Prototyping', 'Accessibility', 'Interaction Design'], image: '/about/team/liam-chen.jpg' },
+            { name: 'Sofia Martins', role: 'Full-stack Engineer', tags: ['Frontend', 'Backend APIs', 'Databases', 'React', 'Node.js'], image: '/about/team/sofia-martins.jpg' },
+            { name: 'Noah Williams', role: 'Platform Engineer', tags: ['CI/CD', 'Containers', 'Kubernetes', 'Monitoring', 'Performance'], image: '/about/team/noah-williams.jpg' },
           ].map((m) => (
             <div key={m.name} className="rounded-xl border border-[var(--border)] p-4 bg-[var(--surface-1)]">
-              <CardImage src={m.image} alt={m.name} className="h-24" />
+              <CardImage src={m.image} alt={m.name} className="h-52" objectPosition="center 30%" />
               <div className="font-semibold mt-3">{m.name}</div>
               <div className="text-sm text-[var(--muted)]">{m.role}</div>
               <div className="mt-2 flex flex-wrap gap-2">
@@ -116,6 +128,30 @@ export default function About() {
               </div>
             </div>
           ))}
+        </div>
+      </Modal>
+
+      {/* Methodology modal */}
+      <Modal open={open === 'methodology'} onClose={() => setOpen(null)} title={t('about.methodologyTitle')}>
+        <p className="text-base mb-6">
+          {t('about.methodologyIntro')}
+        </p>
+        <div className="space-y-4">
+          <div className="rounded-lg border border-[var(--border)] p-6 bg-[var(--surface-1)]">
+            <p className="text-base text-[var(--fg)] leading-relaxed">{t('about.methodologyStep1')}</p>
+          </div>
+          <div className="rounded-lg border border-[var(--border)] p-6 bg-[var(--surface-1)]">
+            <p className="text-base text-[var(--fg)] leading-relaxed">{t('about.methodologyStep2')}</p>
+          </div>
+          <div className="rounded-lg border border-[var(--border)] p-6 bg-[var(--surface-1)]">
+            <p className="text-base text-[var(--fg)] leading-relaxed">{t('about.methodologyStep3')}</p>
+          </div>
+          <div className="rounded-lg border border-[var(--border)] p-6 bg-[var(--surface-1)]">
+            <p className="text-base text-[var(--fg)] leading-relaxed">{t('about.methodologyStep4')}</p>
+          </div>
+          <div className="rounded-lg border border-[var(--border)] p-6 bg-[var(--surface-1)]">
+            <p className="text-base text-[var(--fg)] leading-relaxed">{t('about.methodologyStep5')}</p>
+          </div>
         </div>
       </Modal>
     </div>

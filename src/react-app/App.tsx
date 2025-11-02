@@ -3,6 +3,7 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import CookieBanner from './components/CookieBanner'
 import Home from './pages/Home'
 import About from './pages/About'
 import Services from './pages/Services'
@@ -17,13 +18,14 @@ import FaviconSwitcher from './components/FaviconSwitcher'
 
 function Shell({ children }: { children: React.ReactNode }) {
   return (
-    <div className="relative min-h-dvh flex flex-col bg-[var(--bg)] text-[var(--fg)]">
+    <div className="relative min-h-dvh flex flex-col text-[var(--fg)]" style={{ background: 'var(--bg)' }}>
       <GlobalBackground />
       <FaviconSwitcher />
-      <div className="relative z-10 flex flex-col min-h-dvh">
+      <div className="relative z-10 flex flex-col min-h-dvh" style={{ background: 'transparent' }}>
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
+        <CookieBanner />
       </div>
     </div>
   )
