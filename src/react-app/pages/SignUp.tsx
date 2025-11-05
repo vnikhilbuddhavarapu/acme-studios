@@ -65,8 +65,8 @@ export default function SignUp() {
   }
 
   return (
-    <div className="mx-auto max-w-md px-4 py-16">
-      <h1 className="text-3xl font-bold mb-6">{t('auth.signUpTitle')}</h1>
+    <div className="mx-auto max-w-md px-4 py-8 sm:py-12 md:py-16">
+      <h1 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">{t('auth.signUpTitle')}</h1>
       <form onSubmit={onSubmit} className="space-y-4">
         <input name="firstName" placeholder={t('auth.firstName')} className="input" required />
         <input name="email" placeholder={t('auth.email')} type="email" className="input" required />

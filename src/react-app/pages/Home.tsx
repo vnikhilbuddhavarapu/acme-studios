@@ -7,8 +7,8 @@ export default function Home() {
   return (
     <div>
       <section className="relative overflow-hidden">
-        <div className="mx-auto max-w-6xl px-4 py-24 text-center">
-          <h1 className="text-5xl sm:text-6xl font-extrabold tracking-tight">
+        <div className="mx-auto max-w-6xl px-4 py-12 sm:py-20 md:py-24 text-center">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
             {t('home.heroPrefix')}{' '}
             <span className="gradient-orange">{t('home.heroEm')}</span>{' '}
             {t('home.heroSuffixBeforeEdge')}
@@ -17,15 +17,15 @@ export default function Home() {
           </h1>
 
           {/* one line, horizontally scrollable on small screens, with a subtle entrance */}
-          <p className="mt-6 text-[var(--muted)] max-w-full whitespace-nowrap overflow-x-auto no-scrollbar fade-in-up">
+          <p className="mt-4 sm:mt-6 text-sm sm:text-base text-[var(--muted)] max-w-full whitespace-nowrap overflow-x-auto no-scrollbar fade-in-up px-2">
             {t('home.heroSubtitle')}
           </p>
 
-          <div className="mt-10 flex justify-center gap-4">
-            <Link to="/projects" className="px-5 py-3 rounded-lg bg-[var(--fg)] text-[var(--bg)] font-medium hover:opacity-90 transition">
+          <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 px-4">
+            <Link to="/projects" className="px-5 py-3 rounded-lg bg-[var(--fg)] text-[var(--bg)] font-medium hover:opacity-90 transition text-center">
               {t('home.cta1')}
             </Link>
-            <Link to="/contact" className="px-5 py-3 rounded-lg border border-[var(--border)] hover:bg-[var(--surface-1)] transition">
+            <Link to="/contact" className="px-5 py-3 rounded-lg border border-[var(--border)] hover:bg-[var(--surface-1)] transition text-center">
               {t('home.cta2')}
             </Link>
           </div>
@@ -33,11 +33,11 @@ export default function Home() {
       </section>
 
       {/* What We Do Best */}
-      <section className="mx-auto max-w-6xl px-4 py-16">
-        <h2 className="text-2xl font-semibold mb-6 text-center">{t('home.servicesTitle')}</h2>
-        <p className="text-[var(--muted)] text-center mb-10 max-w-2xl mx-auto">{t('home.servicesSubtitle')}</p>
+      <section className="mx-auto max-w-6xl px-4 py-12 sm:py-16">
+        <h2 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 text-center">{t('home.servicesTitle')}</h2>
+        <p className="text-sm sm:text-base text-[var(--muted)] text-center mb-8 sm:mb-10 max-w-2xl mx-auto px-2">{t('home.servicesSubtitle')}</p>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           <div className="card p-6 hover:translate-y-[-2px] transition">
             <CardImage src="/images/home/full-stack.jpg" alt={t('home.service1Title')} className="h-40" rounded="rounded-lg" />
             <h3 className="font-semibold mt-4">{t('home.service1Title')}</h3>
@@ -83,19 +83,19 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="mt-8 text-center">
-          <Link to="/services" className="inline-flex items-center gap-2 text-sm text-[var(--accent)] hover:underline">
+        <div className="mt-6 sm:mt-8 text-center">
+          <Link to="/services" className="inline-flex items-center gap-2 text-sm sm:text-base text-[var(--accent)] hover:underline">
             {t('home.viewAllServices')} →
           </Link>
         </div>
       </section>
 
       {/* Client Testimonials */}
-      <section className="mx-auto max-w-6xl px-4 py-16">
-        <h2 className="text-2xl font-semibold mb-6 text-center">{t('home.testimonialsTitle')}</h2>
-        <p className="text-[var(--muted)] text-center mb-10 max-w-2xl mx-auto">{t('home.testimonialsSubtitle')}</p>
+      <section className="mx-auto max-w-6xl px-4 py-12 sm:py-16">
+        <h2 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 text-center">{t('home.testimonialsTitle')}</h2>
+        <p className="text-sm sm:text-base text-[var(--muted)] text-center mb-8 sm:mb-10 max-w-2xl mx-auto px-2">{t('home.testimonialsSubtitle')}</p>
         
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
           {/* Testimonial 1 */}
           <div className="card p-6">
             <div className="flex items-center gap-3 mb-4">
@@ -155,11 +155,11 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 pb-20">
-        <div className="rounded-2xl border border-[var(--border)] p-8 text-center bg-[var(--surface-1)]">
-          <h3 className="text-xl font-semibold">{t('home.ctaBlockTitle')}</h3>
-          <p className="text-[var(--muted)] mt-2">{t('home.ctaBlockBody')}</p>
-          <Link to="/contact" className="inline-block mt-5 px-5 py-3 rounded-lg bg-[var(--fg)] text-[var(--bg)] font-medium hover:opacity-90 transition">
+      <section className="mx-auto max-w-6xl px-4 pb-12 sm:pb-20">
+        <div className="rounded-2xl border border-[var(--border)] p-6 sm:p-8 text-center bg-[var(--surface-1)]">
+          <h3 className="text-lg sm:text-xl font-semibold">{t('home.ctaBlockTitle')}</h3>
+          <p className="text-sm sm:text-base text-[var(--muted)] mt-2">{t('home.ctaBlockBody')}</p>
+          <Link to="/contact" className="inline-block mt-4 sm:mt-5 px-5 py-3 rounded-lg bg-[var(--fg)] text-[var(--bg)] font-medium hover:opacity-90 transition">
             {t('home.cta2')}
           </Link>
         </div>

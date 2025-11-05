@@ -24,6 +24,21 @@
 /* Fill the viewport nicely */
 html, body, #root { height: 100%; font-family: Quicksand, sans-serif; }
 
+/* Improve text rendering on mobile */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Ensure minimum touch target size for mobile (44x44px recommended) */
+@media (max-width: 768px) {
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
 /* Form primitives using tokens */
 .input {
   width: 100%;

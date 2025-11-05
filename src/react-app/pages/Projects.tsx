@@ -6,9 +6,9 @@ import CardImage from '../components/CardImage'
 export default function Projects() {
   const { t } = useTranslation('common')
   return (
-    <div className="mx-auto max-w-6xl px-4 py-16">
-      <h1 className="text-3xl font-bold mb-8">{t('projects.title')}</h1>
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="mx-auto max-w-6xl px-4 py-8 sm:py-12 md:py-16">
+      <h1 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8">{t('projects.title')}</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
         {PROJECTS.map((p) => (
           <Link key={p.slug} to={`/projects/${p.slug}`} className="card p-6">
             <CardImage src={p.image} alt={p.title} />

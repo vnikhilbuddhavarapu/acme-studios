@@ -55,20 +55,20 @@ export default function Contact() {
   }
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-16">
-      <h1 className="text-3xl font-bold mb-6">{t('contact.title')}</h1>
+    <div className="mx-auto max-w-3xl px-4 py-8 sm:py-12 md:py-16">
+      <h1 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">{t('contact.title')}</h1>
 
       {ok && (
-        <div className="rounded-2xl border border-green-500/20 bg-green-500/10 p-8 mb-6 text-center">
-          <div className="text-5xl mb-4">✓</div>
-          <h2 className="text-2xl font-semibold">{t('contact.thankYouTitle')}</h2>
-          <p className="text-[var(--muted)] mt-3 text-lg">
+        <div className="rounded-2xl border border-green-500/20 bg-green-500/10 p-6 sm:p-8 mb-6 text-center">
+          <div className="text-4xl sm:text-5xl mb-4">✓</div>
+          <h2 className="text-xl sm:text-2xl font-semibold">{t('contact.thankYouTitle')}</h2>
+          <p className="text-[var(--muted)] mt-3 text-base sm:text-lg">
             {t('contact.thankYouMessage')}
           </p>
           <p className="text-sm text-[var(--muted)] mt-4">
             We've sent a confirmation email to <strong className="text-[var(--fg)]">{data.email}</strong>
           </p>
-          <div className="mt-6 flex justify-center gap-3">
+          <div className="mt-6 flex flex-col sm:flex-row justify-center gap-3">
             <button className="px-4 py-2 rounded-lg bg-[var(--fg)] text-[var(--bg)] font-medium hover:opacity-90 transition" onClick={() => nav('/projects')}>
               {t('contact.viewProjects')}
             </button>
@@ -81,8 +81,8 @@ export default function Contact() {
       )}
 
       {!ok && (
-        <form onSubmit={onSubmit} className="card p-6 space-y-4">
-          <div className="grid sm:grid-cols-2 gap-4">
+        <form onSubmit={onSubmit} className="card p-4 sm:p-6 space-y-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm mb-1">{t('contact.firstName')}</label>
               <input className="input" value={data.firstName} onChange={e => setData({ ...data, firstName: e.target.value })} required />
@@ -130,7 +130,7 @@ export default function Contact() {
           <div className="pt-2">
             <button 
               type="submit" 
-              className="px-5 py-3 rounded-lg bg-[var(--fg)] text-[var(--bg)] font-medium disabled:opacity-60 transition flex items-center gap-2" 
+              className="w-full sm:w-auto px-5 py-3 rounded-lg bg-[var(--fg)] text-[var(--bg)] font-medium disabled:opacity-60 transition flex items-center justify-center gap-2" 
               disabled={submitting || !token}
             >
               {submitting && (

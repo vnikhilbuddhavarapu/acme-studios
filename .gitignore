@@ -33,9 +33,4 @@ wrangler.jsonc
 
 
 # Documentation files (optional - uncomment to ignore)
-HTTP_HEADERS_GUIDE.md
-CACHING_IMPLEMENTATION_SUMMARY.md
-IMAGE_PLACEMENT_GUIDE.md
-RESEND_SETUP_GUIDE.md
-COOKIE_BANNER_IMPLEMENTATION.md
-HOME_PAGE_IMPLEMENTATION.md
+guides

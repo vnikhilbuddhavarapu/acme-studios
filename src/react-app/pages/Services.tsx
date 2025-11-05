@@ -44,9 +44,9 @@ export default function Services() {
   ]
   
   return (
-    <div className="mx-auto max-w-6xl px-4 py-16">
-      <h1 className="text-3xl font-bold mb-8">{t('services.title')}</h1>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="mx-auto max-w-6xl px-4 py-8 sm:py-12 md:py-16">
+      <h1 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8">{t('services.title')}</h1>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {items.map((x) => (
             <div key={x.title} className="card p-6 hover:translate-y-[-2px] transition">
               <CardImage src={x.image} alt={x.title} className="h-48" />

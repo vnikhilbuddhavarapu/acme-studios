@@ -27,11 +27,11 @@ function Modal({ open, onClose, title, children }: ModalProps) {
       aria-label={title}
     >
       <div
-        className="max-w-4xl w-full max-h-[85vh] overflow-y-auto rounded-2xl border border-[var(--border)] bg-[var(--surface-1)] shadow-xl p-6"
+        className="max-w-4xl w-full max-h-[85vh] overflow-y-auto rounded-2xl border border-[var(--border)] bg-[var(--surface-1)] shadow-xl p-4 sm:p-6"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-start justify-between">
-          <h2 className="text-xl font-semibold">{title}</h2>
+          <h2 className="text-lg sm:text-xl font-semibold">{title}</h2>
           <button
             onClick={onClose}
             className="rounded-md px-2 py-1 text-sm border border-[var(--border)] hover:bg-[var(--surface-2)]"
@@ -51,13 +51,13 @@ export default function About() {
   const [open, setOpen] = React.useState<'mission' | 'team' | 'methodology' | null>(null)
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-16">
-      <h1 className="text-3xl font-bold">{t('about.title')}</h1>
-      <p className="mt-4 text-[var(--muted)]">
+    <div className="mx-auto max-w-6xl px-4 py-8 sm:py-12 md:py-16">
+      <h1 className="text-2xl sm:text-3xl font-bold">{t('about.title')}</h1>
+      <p className="mt-4 text-sm sm:text-base text-[var(--muted)]">
         {t('about.intro')}
       </p>
 
-      <div className="mt-10 grid sm:grid-cols-2 gap-6">
+      <div className="mt-8 sm:mt-10 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
         <button
           onClick={() => setOpen('mission')}
           className="card p-6 text-left hover:translate-y-[-2px] transition"
@@ -81,12 +81,11 @@ export default function About() {
         </button>
       </div>
 
-      <div className="mt-6">
+      <div className="mt-4 sm:mt-6">
         <button
           onClick={() => setOpen('methodology')}
-          className="card p-6 text-left hover:translate-y-[-2px] transition w-full"
-        >
-          <h3 className="font-semibold text-lg">{t('about.methodologyTitle')}</h3>
+          className="card p-4 sm:p-6 text-left hover:translate-y-[-2px] transition w-full">
+          <h3 className="font-semibold text-base sm:text-lg">{t('about.methodologyTitle')}</h3>
           <p className="text-[var(--muted)] text-sm mt-2">
             {t('about.methodologyDesc')}
           </p>
@@ -108,7 +107,7 @@ export default function About() {
 
       {/* Team modal */}
       <Modal open={open === 'team'} onClose={() => setOpen(null)} title={t('about.teamTitle')}>
-        <div className="grid sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {[
             { name: 'Ava Miller', role: 'Head of Engineering', tags: ['System Architecture', 'Cloud Infrastructure', 'Team Leadership', 'DevOps', 'API Design'], image: '/about/team/ava-miller.jpg' },
             { name: 'Liam Chen', role: 'Lead UI/UX Designer', tags: ['User Research', 'Design Systems', 'Prototyping', 'Accessibility', 'Interaction Design'], image: '/about/team/liam-chen.jpg' },
