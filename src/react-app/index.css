@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* ---- Theme tokens ---- */
+/* Theme tokens */
 :root[data-theme="dark"] {
   color-scheme: dark;
   --bg: oklch(15% 0.01 262);
@@ -21,17 +21,17 @@
   --border: oklch(86% 0.01 262);
 }
 
-/* Fill the viewport nicely */
+/* Base styles */
 html, body, #root { height: 100%; font-family: Quicksand, sans-serif; }
 
-/* Improve text rendering on mobile */
+/* Text rendering */
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
 }
 
-/* Ensure minimum touch target size for mobile (44x44px recommended) */
+/* Minimum touch target size for mobile */
 @media (max-width: 768px) {
   button, a {
     min-height: 44px;
@@ -39,7 +39,7 @@ body {
   }
 }
 
-/* Form primitives using tokens */
+/* Form inputs */
 .input {
   width: 100%;
   border-radius: 0.5rem;
@@ -58,7 +58,7 @@ body {
 }
 .btn-primary:hover { opacity: .92; transition: opacity .15s; }
 
-/* Nice card surface we can reuse */
+/* Card component */
 .card {
   border: 1px solid var(--border);
   background: var(--surface-1);
@@ -66,11 +66,11 @@ body {
 }
 .card:hover { border-color: color-mix(in oklab, var(--border), var(--fg) 15%); transform: translateY(-1px); transition: all .15s; }
 
-/* Hide scrollbars for single-line overflow areas (subtitle) */
+/* Hide scrollbars */
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-/* Animated orange gradient for the hero emphasis */
+/* Animated gradient */
 .gradient-orange {
   background-image: linear-gradient(90deg, #fb923c, #f97316, #ffb347);
   background-size: 200% 100%;
@@ -83,7 +83,7 @@ body {
   50% { background-position: 100% 50%; }
 }
 
-/* Animated underline for “edge” */
+/* Animated underline */
 .underline-anim { position: relative; }
 .underline-anim::after {
   content: '';
@@ -98,7 +98,7 @@ body {
   50% { transform: scaleX(1); opacity: 1; }
 }
 
-/* Subtle entrance animation for the subtitle */
+/* Fade in animation */
 .fade-in-up { animation: fadeInUp .7s ease both .1s; }
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(6px); }

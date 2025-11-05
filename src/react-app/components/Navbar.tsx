@@ -26,12 +26,12 @@ export default function Navbar() {
       .catch(() => setSignedIn(false))
   }, [])
 
-  // run once on mount, and again whenever the route changes
+  // Check auth on mount and route changes
   React.useEffect(() => {
     checkAuth()
   }, [checkAuth, loc.pathname])
 
-  // also refresh when tab regains focus
+  // Refresh auth when tab regains focus
   React.useEffect(() => {
     const onFocus = () => checkAuth()
     const onVis = () => { if (!document.hidden) checkAuth() }
@@ -43,12 +43,10 @@ export default function Navbar() {
     }
   }, [checkAuth])
 
-  // Close mobile menu when route changes
   React.useEffect(() => {
     setMobileMenuOpen(false)
   }, [loc.pathname])
 
-  // Prevent body scroll when mobile menu is open
   React.useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = 'hidden'

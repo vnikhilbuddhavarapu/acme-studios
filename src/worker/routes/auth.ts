@@ -1,4 +1,3 @@
-// src/worker/routes/auth.ts
 import { Hono } from 'hono'
 import { setCookie, deleteCookie } from 'hono/cookie'
 import type { Env } from '../types'
@@ -9,7 +8,7 @@ import { readSession } from '../lib/session'
 
 export const auth = new Hono<{ Bindings: Env }>()
 
-const SESSION_TTL = 60 * 60 * 2 // 2h
+const SESSION_TTL = 60 * 60 * 2
 
 type SignUpBody = {
   firstName: string
@@ -30,7 +29,7 @@ function isNonEmptyString(v: unknown): v is string {
   return typeof v === 'string' && v.trim().length > 0
 }
 
-// --- SIGN UP ---
+// Sign up endpoint
 auth.post('/signup', async (c) => {
   let raw: unknown
   try {
@@ -77,7 +76,7 @@ auth.post('/signup', async (c) => {
   const isHttps = new URL(c.req.url).protocol === 'https:'
   setCookie(c, 'sid', token, {
     httpOnly: true,
-    secure: isHttps, // allow cookie on http://localhost in dev
+    secure: isHttps,
     sameSite: 'Lax',
     maxAge: SESSION_TTL,
     path: '/'
@@ -86,7 +85,7 @@ auth.post('/signup', async (c) => {
   return c.json({ ok: true, userId })
 })
 
-// --- SIGN IN ---
+// Sign in endpoint
 auth.post('/signin', async (c) => {
   let raw: unknown
   try {
@@ -104,7 +103,6 @@ auth.post('/signin', async (c) => {
   }
 
   const ip = c.req.header('CF-Connecting-IP') ?? undefined
-  // 🔧 FIX: use b.turnstileToken (not an undefined variable)
   const okTs = await verifyTurnstile(c.env, b.turnstileToken, ip)
   if (!okTs) return c.json({ error: 'turnstile_failed' }, 400)
 
@@ -134,7 +132,7 @@ auth.post('/signin', async (c) => {
   return c.json({ ok: true, userId: row.id, firstName: row.first_name })
 })
 
-// --- ME ---
+// Get current user
 auth.get('/me', async (c) => {
   const u = await readSession(c.env, c.req.header('cookie') ?? null)
   if (!u) return c.json({ user: null })
@@ -145,7 +143,7 @@ auth.get('/me', async (c) => {
   return c.json({ user: row ?? null })
 })
 
-// --- SIGN OUT ---
+// Sign out endpoint
 auth.post('/signout', async (c) => {
   const u = await readSession(c.env, c.req.header('cookie') ?? null)
   if (u) {

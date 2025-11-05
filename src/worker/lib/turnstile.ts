@@ -1,11 +1,10 @@
-// src/worker/lib/turnstile.ts
 import type { Env } from '../types'
 
 type VerifyRes = { success: boolean; ['error-codes']?: string[] }
 
 export async function verifyTurnstile(env: Env, token: string, ip?: string): Promise<boolean> {
   if (!env.TURNSTILE_SECRET_KEY) return false
-  // Cloudflare dummy secret → always pass in dev
+  // Dummy secret for dev
   if (env.TURNSTILE_SECRET_KEY === '1x0000000000000000000000000000000AA') return true
 
   const body = new URLSearchParams({

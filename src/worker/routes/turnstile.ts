@@ -3,7 +3,7 @@ import type { Env } from '../types'
 
 const turnstile = new Hono<{ Bindings: Env }>()
 
-// Public: return the site key for the client (safe to expose)
+// Return site key for client
 turnstile.get('/sitekey', (c) => {
   const siteKey = c.env.TURNSTILE_SITE_KEY || '1x00000000000000000000AA'
   return c.json({ siteKey })
@@ -21,7 +21,7 @@ function isVerifyPayload(v: unknown): v is VerifyPayload {
   )
 }
 
-// Server-side verification
+// Verify turnstile token
 turnstile.post('/verify', async (c) => {
   let dataUnknown: unknown
   try {
@@ -34,7 +34,7 @@ turnstile.post('/verify', async (c) => {
   }
   const { token, ip } = dataUnknown
 
-  // Dev bypass: Cloudflare dummy secret always succeeds
+  // Dev bypass with dummy secret
   if (c.env.TURNSTILE_SECRET_KEY === '1x0000000000000000000000000000000AA') {
     return c.json({ ok: true })
   }
@@ -55,5 +55,5 @@ turnstile.post('/verify', async (c) => {
   return c.json({ ok: !!data.success, errors: data['error-codes'] ?? [] })
 })
 
-export { turnstile }          // named export (optional)
-export default turnstile      // default export (fixes your import)
+export { turnstile }
+export default turnstile

@@ -1,4 +1,3 @@
-// src/worker/lib/hash.ts
 export async function genSalt(bytes = 16): Promise<string> {
     const salt = crypto.getRandomValues(new Uint8Array(bytes))
     return btoa(String.fromCharCode(...salt))

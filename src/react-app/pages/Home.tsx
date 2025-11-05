@@ -16,7 +16,6 @@ export default function Home() {
             {t('home.heroSuffixAfterEdge')}
           </h1>
 
-          {/* one line, horizontally scrollable on small screens, with a subtle entrance */}
           <p className="mt-4 sm:mt-6 text-sm sm:text-base text-[var(--muted)] max-w-full whitespace-nowrap overflow-x-auto no-scrollbar fade-in-up px-2">
             {t('home.heroSubtitle')}
           </p>

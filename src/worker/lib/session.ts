@@ -1,4 +1,3 @@
-// src/worker/lib/session.ts
 import { jwtVerify } from 'jose'
 import type { Env } from '../types'
 

@@ -20,165 +20,132 @@ const app = new Hono<{ Bindings: Env }>()
 
 app.use('*', cors())
 
-// ============================================================================
-// CACHING HEADERS MIDDLEWARE
-// ============================================================================
-// This middleware sets Cache-Control headers for different types of content.
-// Modify these values to adjust caching behavior.
-// ============================================================================
+// Caching middleware - sets Cache-Control headers based on content type
 
 app.use('*', async (c, next) => {
   await next()
   
   const path = c.req.path
   
-  // ----------------------------------------------------------------------------
-  // 1. STATIC ASSETS (Images, Fonts, etc.)
-  // Cache for 6 months on CDN, 1 month on browser
-  // ----------------------------------------------------------------------------
+  // Static assets: images, fonts, etc.
+  // Browser: 30 days, CDN: 180 days
   if (path.startsWith('/images/') || 
       path.startsWith('/fonts/') || 
       path.match(/\.(jpg|jpeg|png|gif|webp|avif|svg|ico|woff|woff2|ttf|eot)$/)) {
     c.header('Cache-Control', 'public, max-age=2592000, s-maxage=15552000')
-    // max-age=2592000 = 30 days (1 month) for browser
-    // s-maxage=15552000 = 180 days (6 months) for CDN
+    // 30 days browser, 180 days CDN
     c.header('CDN-Cache-Control', 'public, max-age=15552000')
   }
   
-  // ----------------------------------------------------------------------------
-  // 2. BUILT ASSETS (Vite-generated JS/CSS with hashes)
-  // Cache for 6 months on CDN, 1 month on browser, with immutable flag
-  // immutable = file will never change (safe because Vite uses content hashes)
-  // ----------------------------------------------------------------------------
+  // Vite-generated assets with content hashes
+  // Immutable since filenames change when content changes
   else if (path.startsWith('/assets/')) {
     c.header('Cache-Control', 'public, max-age=2592000, s-maxage=15552000, immutable')
     c.header('CDN-Cache-Control', 'public, max-age=15552000, immutable')
   }
   
-  // ----------------------------------------------------------------------------
-  // 3. API ENDPOINTS
-  // Never cache API responses (dynamic data)
-  // ----------------------------------------------------------------------------
+  // API endpoints - no caching for dynamic data
   else if (path.startsWith('/api/')) {
     c.header('Cache-Control', 'private, no-cache, no-store, must-revalidate')
     c.header('CDN-Cache-Control', 'no-store')
   }
   
-  // ----------------------------------------------------------------------------
-  // 4. SEMI-STATIC PAGES (About, Services)
-  // Cache for 1 month on CDN, 1 week on browser
-  // ----------------------------------------------------------------------------
+  // Semi-static pages like About and Services
+  // Browser: 7 days, CDN: 30 days
   else if (path === '/about' || path === '/services') {
     c.header('Cache-Control', 'public, max-age=604800, s-maxage=2592000')
-    // max-age=604800 = 7 days (1 week) for browser
-    // s-maxage=2592000 = 30 days (1 month) for CDN
+    // 7 days browser, 30 days CDN
     c.header('CDN-Cache-Control', 'public, max-age=2592000')
     
-    // Add Vary header to cache different language versions separately
+    // Cache different language versions separately
     c.header('Vary', 'Cookie, Accept-Language')
     
-    // Add Cache-Tag for selective purging in Cloudflare
+    // Cache tag for selective purging
     c.header('Cache-Tag', `page:${path.slice(1)}`)
   }
   
-  // ----------------------------------------------------------------------------
-  // 5. OTHER HTML PAGES (Home, Projects, Contact, etc.)
-  // Cache for 1 week on CDN, 1 hour on browser
-  // ----------------------------------------------------------------------------
+  // Other HTML pages
+  // Browser: 1 hour, CDN: 7 days
   else if (!path.includes('.')) {
     c.header('Cache-Control', 'public, max-age=3600, s-maxage=604800')
-    // max-age=3600 = 1 hour for browser
-    // s-maxage=604800 = 7 days for CDN
+    // 1 hour browser, 7 days CDN
     c.header('CDN-Cache-Control', 'public, max-age=604800')
     c.header('Vary', 'Cookie, Accept-Language')
     
-    // Add Cache-Tag for selective purging
+    // Cache tag for purging
     const pageName = path === '/' ? 'home' : path.slice(1).replace(/\//g, '-')
     c.header('Cache-Tag', `page:${pageName}`)
   }
 })
 
-// ============================================================================
-// CONTENT SECURITY POLICY (CSP) HEADERS
-// ============================================================================
-// CSP prevents XSS attacks by controlling what resources can load.
-// Modify these directives carefully - incorrect CSP can break functionality.
-// ============================================================================
+// Content Security Policy headers
+// Controls what resources can load to prevent XSS attacks
 
 app.use('*', async (c, next) => {
   await next()
   
-  // Build CSP directives
+  // CSP directives
   const cspDirectives = [
-    // Default: Only allow resources from same origin
+    // Default to same origin only
     "default-src 'self'",
     
-    // Scripts: Allow from self + inline scripts (for Vite) + Turnstile
+    // Scripts from self, inline (Vite), and Turnstile
     "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://challenges.cloudflare.com",
-    // Note: 'unsafe-inline' and 'unsafe-eval' needed for Vite dev mode and React
-    // For production, consider using nonces instead
+    // unsafe-inline and unsafe-eval needed for Vite dev and React
     
-    // Styles: Allow from self + inline styles (for Tailwind)
+    // Styles from self and inline (Tailwind)
     "style-src 'self' 'unsafe-inline'",
-    // Note: 'unsafe-inline' needed for Tailwind's utility classes
     
-    // Images: Allow from anywhere (for flexibility with user uploads)
+    // Images from anywhere
     "img-src 'self' data: https: blob:",
     
-    // Fonts: Allow from self + data URIs
+    // Fonts from self and data URIs
     "font-src 'self' data:",
     
-    // AJAX/Fetch: Allow API calls to self + Turnstile
+    // API calls to self and Turnstile
     "connect-src 'self' https://challenges.cloudflare.com",
     
-    // Frames: Only allow Turnstile widget
+    // Only allow Turnstile frames
     "frame-src https://challenges.cloudflare.com",
     
-    // Base URI: Restrict to same origin
+    // Base URI restricted to same origin
     "base-uri 'self'",
     
-    // Forms: Only submit to same origin
+    // Forms submit to same origin only
     "form-action 'self'",
     
-    // Prevent site from being embedded in iframes (clickjacking protection)
+    // Prevent iframe embedding (clickjacking protection)
     "frame-ancestors 'none'",
   ]
   
   c.header('Content-Security-Policy', cspDirectives.join('; '))
 })
 
-// ============================================================================
-// SECURITY HEADERS
-// ============================================================================
-// Additional security headers for defense in depth.
-// ============================================================================
+// Additional security headers
 
 app.use('*', async (c, next) => {
   await next()
   
-  // Prevent MIME-type sniffing
+  // Prevent MIME sniffing
   c.header('X-Content-Type-Options', 'nosniff')
   
-  // Prevent clickjacking (redundant with CSP frame-ancestors, but good fallback)
+  // Prevent clickjacking
   c.header('X-Frame-Options', 'DENY')
   
-  // Enable browser XSS protection (legacy, but still useful)
+  // Browser XSS protection
   c.header('X-XSS-Protection', '1; mode=block')
   
-  // Control referrer information
+  // Referrer policy
   c.header('Referrer-Policy', 'strict-origin-when-cross-origin')
   
-  // Disable unnecessary browser features
+  // Disable unnecessary features
   c.header('Permissions-Policy', 'geolocation=(), microphone=(), camera=()')
   
-  // Force HTTPS (only set this if you're using HTTPS!)
-  // Uncomment when deployed to production with HTTPS:
+  // Force HTTPS - uncomment for production:
   // c.header('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload')
 })
 
-// ============================================================================
-// ROUTES
-// ============================================================================
+// Routes
 
 app.get('/', (c: Context<{ Bindings: Env }>) => c.text('ACME Studios API OK'))
 
@@ -189,6 +156,6 @@ app.get('/api/test/db', async (c) => {
 
 app.route('/api/turnstile', turnstile)
 app.route('/api/auth', auth)
-app.route('/api/contact', contact) // ⬅️ add this
+app.route('/api/contact', contact)
 
 export default app

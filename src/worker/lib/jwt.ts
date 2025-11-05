@@ -1,9 +1,8 @@
-// src/worker/lib/jwt.ts
 import { SignJWT, jwtVerify, type JWTPayload } from 'jose'
 
 export type SessionClaims = JWTPayload & {
   jti: string
-  sub: string // userId
+  sub: string
   locale?: string
 }
 

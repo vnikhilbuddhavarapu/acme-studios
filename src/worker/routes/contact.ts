@@ -31,15 +31,15 @@ contact.post('/', async (c) => {
 
   const { firstName, lastName, email, service, message, turnstileToken } = body
 
-  // 1) Verify Turnstile
+  // Verify Turnstile
   const okTs = await verifyTurnstile(c.env, turnstileToken, ip)
   if (!okTs) return c.json({ error: 'turnstile_failed' }, 400)
 
-  // 2) Minimal validation
+  // Validate input
   if (!firstName || !lastName || !email || !service) return c.json({ error: 'missing_fields' }, 400)
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return c.json({ error: 'bad_email' }, 400)
 
-  // 3) Compose thank you email via React Email
+  // Compose thank you email
   const submittedAt = new Date().toISOString()
   const html = '<!doctype html>' + renderToStaticMarkup(
     ThankYouEmail({
@@ -64,18 +64,18 @@ contact.post('/', async (c) => {
     `Questions? Just reply to this email.\n\n` +
     `— ACME Studios`
 
-  // 4) Send email to user via Resend
+  // Send email via Resend
   const FROM = c.env.RESEND_FROM || 'ACME Studios <no-reply@acme-studios.org>'
   const apiKey = c.env.RESEND_API_KEY
   if (!apiKey) return c.json({ error: 'missing_resend_api_key' }, 500)
 
   const payload = { 
     from: FROM, 
-    to: [email], // Send to the user who submitted the form
+    to: [email],
     subject: `Thanks for reaching out to ACME Studios!`, 
     html, 
     text,
-    reply_to: 'hello@acme-studios.org' // Allow user to reply
+    reply_to: 'hello@acme-studios.org'
   }
   const r = await fetch('https://api.resend.com/emails', {
     method: 'POST',
